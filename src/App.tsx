@@ -1,5 +1,7 @@
+import LandingPage from "./components/landingPage";
+
 export function App() {
   return (
-    <h1>Teste</h1>
+    <LandingPage />
   )
 }

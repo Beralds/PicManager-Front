@@ -1,3 +1,52 @@
+/* Basic reset to remove default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #444;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 15px;
+}
+
+/* Links */
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
