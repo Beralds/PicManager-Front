@@ -1,3 +1,4 @@
+import UserModel from "@/@types/userModel";
 import userService from "@/services/userService";
 import { useEffect, useState } from "react";
 
@@ -6,7 +7,7 @@ interface MyUsersPageProps {
 }
 
 const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<UserModel[]>([]);
 
   useEffect(() => {
     const getUsers = async () => {

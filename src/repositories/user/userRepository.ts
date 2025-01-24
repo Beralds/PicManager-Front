@@ -1,8 +1,9 @@
+import UserModel from "@/@types/userModel";
 import axios from "@/util/AxiosInstance";
 
 class UserRepository {
   async getUsers() {
-    return axios.get(`/users`);
+    return axios.get<UserModel[]>(`/users`);
   }
 }
 
