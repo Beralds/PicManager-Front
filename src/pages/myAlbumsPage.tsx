@@ -5,9 +5,10 @@ import CardCollection from "@/components/own/cardCollection";
 
 interface MyAlbumsPageProps {
   allowChanges: boolean;
+  handleSelectAlbum: (albumId: number) => void;
 }
 
-const MyAlbumsPage = ({ allowChanges }: MyAlbumsPageProps) => {
+const MyAlbumsPage = ({ allowChanges, handleSelectAlbum }: MyAlbumsPageProps) => {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
 
   useEffect(() => {
@@ -23,8 +24,8 @@ const MyAlbumsPage = ({ allowChanges }: MyAlbumsPageProps) => {
 
   return (
     <CardCollection
-      handleViewItem={() => console.log()}
-      handleEditItem={() => console.log()}
+      handleViewItem={handleSelectAlbum}
+      handleEditItem={handleSelectAlbum}
       allowChanges={ allowChanges }
       collectionType={ "album" }
       collection={ cards }

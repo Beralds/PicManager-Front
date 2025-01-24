@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { LogIn } from "lucide-react";
 
 
 interface LandingPageProps {
@@ -37,7 +38,7 @@ const LandingPage = ({ handleSubmit }: LandingPageProps) => {
           </form>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <Button onClick={() => handleSubmit(email)}>Sign In</Button>
+          <Button onClick={() => handleSubmit(email)}>Sign In<LogIn /></Button>
         </CardFooter>
       </Card>
     </div>

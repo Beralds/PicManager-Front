@@ -5,6 +5,7 @@ import UserModel from "./@types/userModel";
 import MyAlbumsPage from "./pages/myAlbumsPage";
 import { Page } from "./enums/pages";
 import MyPhotosPage from "./pages/myPhotosPage";
+import Header from "./components/own/header";
 // import MyPhotosPage from "./pages/myPhotosPage";
 
 export function App() {
@@ -18,6 +19,13 @@ export function App() {
     setCurrentUserEmail(userEmail);
     setCurrentPage(Page.Users);
   }
+  const handleSignOff = () => {
+    setCurrentUserEmail('');
+    setCurrentPage(Page.Landing);
+  }
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  }
   const handleSelectUser = (user: UserModel) => {
     setSelectedUser(user);
     setCurrentPage(Page.Albums);
@@ -28,21 +36,25 @@ export function App() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="bg-gray-950 w-[100%] h-[60px] mb-2 flex justify-between items-center">
-        <h1>PIC MANAGER</h1>
-        <div>Oi</div>
-      </div>
+      { currentPage !== Page.Landing ? 
+        <Header
+          currentPageTitle={Page[currentPage]}
+          handlePreviousPage={handlePreviousPage}
+          handleSignOff={handleSignOff}
+          showPreviousPageButton={currentPage > Page.Users}
+        /> :  null }
       { currentPage === Page.Landing ? 
         <LandingPage 
           handleSubmit={handleSignIn} 
         /> :  null }
       { currentPage === Page.Users ? 
         <MyUsersPage 
-          handleOpenUserAlbum={handleSelectUser} 
+          handleOpenUserAlbums={handleSelectUser} 
         /> :  null }
       { currentPage === Page.Albums ? 
         <MyAlbumsPage 
           allowChanges={allowChanges}
+          handleSelectAlbum={handleSelectAlbum}
         /> :  null }
       { currentPage === Page.Photos ? 
         <MyPhotosPage 

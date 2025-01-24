@@ -20,10 +20,10 @@ import { BookImage } from "lucide-react";
 
 
 interface MyUsersPageProps {
-  handleOpenUserAlbum: (user: UserModel) => void;
+  handleOpenUserAlbums: (user: UserModel) => void;
 }
 
-const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
+const MyUsersPage = ({ handleOpenUserAlbums }: MyUsersPageProps) => {
   const [users, setUsers] = useState<UserModel[]>([]);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" onClick={() => handleOpenUserAlbum(user)}>
+                        <Button variant="outline" size="icon" onClick={() => handleOpenUserAlbums(user)}>
                           <BookImage />
                         </Button>
                       </TooltipTrigger>
