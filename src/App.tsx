@@ -1,10 +1,13 @@
 import { useState } from "react";
 import LandingPage from "./pages/landingPage";
 import MyUsersPage from "./pages/myUsersPage";
+import UserModel from "./@types/userModel";
+import MyAlbumsPage from "./pages/myAlbumsPage";
 
 export function App() {
   const [currentUserEmail, setCurrentUserEmail] = useState('');
-  const [selectedUserEmail, setSelectedUserEmail] = useState('');
+  const [selectedUser, setSelectedUser] = useState<UserModel>();
+  const [selectedAlbumId, setSelectedAlbumId] = useState<number>();
 
   return (
     <>
@@ -12,9 +15,13 @@ export function App() {
         <LandingPage 
           handleSubmit={(userEmail) => setCurrentUserEmail(userEmail)} 
         /> :  null }
-      { currentUserEmail ? 
+      { currentUserEmail && !selectedUser ? 
         <MyUsersPage 
-          handleOpenUserAlbum={(userEmail) => setSelectedUserEmail(userEmail)} 
+          handleOpenUserAlbum={(user) => setSelectedUser(user)} 
+        /> :  null }
+      { selectedUser ? 
+        <MyAlbumsPage 
+          handleOpenAlbum={(albumId) => setSelectedAlbumId(albumId)} 
         /> :  null }
     </>
   )

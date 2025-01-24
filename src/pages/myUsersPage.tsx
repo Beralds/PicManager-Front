@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -21,7 +20,7 @@ import { BookImage } from "lucide-react";
 
 
 interface MyUsersPageProps {
-  handleOpenUserAlbum: (userEmail: string) => void;
+  handleOpenUserAlbum: (user: UserModel) => void;
 }
 
 const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
@@ -40,7 +39,6 @@ const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
     <div className="max-w-2xl mx-auto">
       <div className="border rounded">
         <Table>
-          <TableCaption>A list of registered users.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[80px] text-center">UserId</TableHead>
@@ -56,18 +54,18 @@ const MyUsersPage = ({ handleOpenUserAlbum }: MyUsersPageProps) => {
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell className="text-center">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" size="icon" onClick={() => handleOpenUserAlbum(user.email)}>
-                        <BookImage />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>View user's albums</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="outline" size="icon" onClick={() => handleOpenUserAlbum(user)}>
+                          <BookImage />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>View user's albums</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </TableCell>
               </TableRow>
             )}
