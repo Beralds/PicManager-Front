@@ -7,7 +7,8 @@ import MyAlbumsPage from "./pages/myAlbumsPage";
 export function App() {
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [selectedUser, setSelectedUser] = useState<UserModel>();
-  const [selectedAlbumId, setSelectedAlbumId] = useState<number>();
+  // const [selectedAlbumId, setSelectedAlbumId] = useState<number>();
+  const allowChanges = currentUserEmail === selectedUser?.email;
 
   return (
     <>
@@ -21,7 +22,7 @@ export function App() {
         /> :  null }
       { selectedUser ? 
         <MyAlbumsPage 
-          handleOpenAlbum={(albumId) => setSelectedAlbumId(albumId)} 
+          allowChanges={allowChanges}
         /> :  null }
     </>
   )
