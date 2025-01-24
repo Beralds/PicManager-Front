@@ -3,19 +3,18 @@ import LandingPage from "./pages/landingPage";
 import MyUsersPage from "./pages/myUsersPage";
 
 export function App() {
-  const [currentUser, setCurrentUser] = useState('');
-  const [selectedUser, setSelectedUser] = useState('');
+  const [currentUserEmail, setCurrentUserEmail] = useState('');
+  const [selectedUserEmail, setSelectedUserEmail] = useState('');
 
   return (
     <>
-      { !currentUser ? 
+      { !currentUserEmail ? 
         <LandingPage 
-          // handleSubmit={() => setCurrentUser(currentUser)} 
-          handleSubmit={(user) => setCurrentUser(user)} 
+          handleSubmit={(userEmail) => setCurrentUserEmail(userEmail)} 
         /> :  null }
-      { currentUser ? 
+      { currentUserEmail ? 
         <MyUsersPage 
-          handleOpenUserAlbum={() => setSelectedUser(selectedUser)} 
+          handleOpenUserAlbum={(userEmail) => setSelectedUserEmail(userEmail)} 
         /> :  null }
     </>
   )
