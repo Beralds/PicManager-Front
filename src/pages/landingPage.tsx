@@ -19,15 +19,6 @@ interface LandingPageProps {
 const LandingPage = ({ handleSubmit }: LandingPageProps) => {
   const [email, setEmail] = useState('');
 
-  // return (
-  //   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
-  //     <h1>Welcome to Pic Manager!</h1>
-  //     <h2>Please, sign in with your e-mail:</h2>
-  //     <Input type='email' placeholder='E-mail' style={{width: '200px'}} onChange={(e) => {setEmail(e.target.value)}} />
-  //     <Button onClick={() => handleSubmit(email)}>Sign in</Button>
-  //   </div>
-  // )
-
   return (
     <div className="flex flex-col justify-center items-center h-[90vh]">
       <Card className="w-[350px]">
