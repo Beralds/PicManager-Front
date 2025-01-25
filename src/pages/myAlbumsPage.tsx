@@ -5,11 +5,17 @@ import CardCollection from "@/components/own/cardCollection";
 
 interface MyAlbumsPageProps {
   allowChanges: boolean;
-  handleSelectAlbum: (albumId: number) => void;
+  handleSelectAlbum: (album: AlbumModel) => void;
 }
 
 const MyAlbumsPage = ({ allowChanges, handleSelectAlbum }: MyAlbumsPageProps) => {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
+  const selectAlbum = (albumId: number) => {
+    const selectedAlbum = 
+      albums.find((album) => album.id === albumId) || { userId: 0, id: 0, title: '', photos: [] };
+
+    handleSelectAlbum(selectedAlbum);
+  };
 
   useEffect(() => {
     const getAlbums = async () => {
@@ -18,14 +24,14 @@ const MyAlbumsPage = ({ allowChanges, handleSelectAlbum }: MyAlbumsPageProps) =>
     }
     
     getAlbums();
-  })
+  }, [])
 
   const cards = albums.map((album) => { return { itemId: album.id, title: album.title}});
 
   return (
     <CardCollection
-      handleViewItem={handleSelectAlbum}
-      handleEditItem={handleSelectAlbum}
+      handleViewItem={selectAlbum}
+      handleEditItem={selectAlbum}
       allowChanges={ allowChanges }
       collectionType={ "album" }
       collection={ cards }

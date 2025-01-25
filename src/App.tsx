@@ -6,13 +6,14 @@ import MyAlbumsPage from "./pages/myAlbumsPage";
 import { Page } from "./enums/pages";
 import MyPhotosPage from "./pages/myPhotosPage";
 import Header from "./components/own/header";
+import AlbumModel from "./@types/albumModel";
 // import MyPhotosPage from "./pages/myPhotosPage";
 
 export function App() {
   const [currentPage, setCurrentPage] = useState(Page.Landing);
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [selectedUser, setSelectedUser] = useState<UserModel>();
-  // const [selectedAlbumId, setSelectedAlbumId] = useState<number>();
+  const [selectedAlbum, setSelectedAlbum] = useState<AlbumModel>();
   const allowChanges = currentUserEmail === selectedUser?.email;
 
   const handleSignIn = (userEmail: string) => {
@@ -30,7 +31,8 @@ export function App() {
     setSelectedUser(user);
     setCurrentPage(Page.Albums);
   }
-  const handleSelectAlbum = () => {
+  const handleSelectAlbum = (album: AlbumModel) => {
+    setSelectedAlbum(album);
     setCurrentPage(Page.Photos);
   }
 
@@ -59,6 +61,7 @@ export function App() {
       { currentPage === Page.Photos ? 
         <MyPhotosPage 
           allowChanges={allowChanges}
+          originalPhotos={selectedAlbum?.photos || []}
         /> :  null }
     </div>
   )

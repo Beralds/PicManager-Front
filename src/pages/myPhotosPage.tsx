@@ -1,25 +1,22 @@
-import AlbumModel from "@/@types/albumModel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
-import albumService from "@/services/albumService";
+import PhotoModel from "@/@types/photoModel";
 
 interface MyPhotosPageProps {
   allowChanges: boolean;
+  originalPhotos: PhotoModel[];
 }
 
-const MyPhotosPage = ({ allowChanges }: MyPhotosPageProps) => {
-  const [photos, setPhotos] = useState<AlbumModel[]>([]);
+const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
+  const [photos, setPhotos] = useState<PhotoModel[]>(originalPhotos);
 
-  useEffect(() => {
-    const getPhotos = async () => {
-      const photos = await albumService.getAlbumPhotos(1);
-      setPhotos(photos);
+  const cards = photos.map((photo) => { 
+    return { 
+      itemId: photo.id, 
+      title: photo.title, 
+      thumbnailUrl: photo.thumbnailUrl,
     }
-    
-    getPhotos();
-  })
-
-  const cards = photos.map((album) => { return { itemId: album.id, title: album.title}});
+  });
 
   return (
     <CardCollection

@@ -26,9 +26,9 @@ interface CardCollectionProps {
 const CardCollection = ({ handleViewItem, handleEditItem, allowChanges, collectionType, collection }: CardCollectionProps) => {
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="border rounded grid grid-cols-4">
+      <div className="border rounded grid grid-cols-3">
         { allowChanges ? 
-          <Card className="w-[200px] h-[160px] m-2 flex flex-col justify-center items-center">
+          <Card className="w-[280px] h-[300px] m-2 flex flex-col justify-center items-center">
             <CardHeader>
               <CardTitle>{`New ${collectionType}`}</CardTitle>
             </CardHeader>
@@ -40,10 +40,16 @@ const CardCollection = ({ handleViewItem, handleEditItem, allowChanges, collecti
           </Card> : null 
         }
         {collection.map((card) =>
-          <Card className="w-[200px] h-[160px] m-2 flex flex-col justify-between">
+          <Card className="w-[280px] h-[300px] m-2 flex flex-col justify-between items-center" key={card.itemId}>
             <CardHeader>
               <CardTitle>{`${card.title}`}</CardTitle>
             </CardHeader>
+            { card.thumbnailUrl ?
+              <CardContent>
+                <figure>
+                  <img src={card.thumbnailUrl} alt={card.title} />
+                </figure>
+              </CardContent> : null }
             <CardFooter className="flex justify-end">
               <TooltipProvider>
                 <Tooltip>
