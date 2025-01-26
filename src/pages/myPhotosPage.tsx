@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
 import PhotoModel from "@/@types/photoModel";
+import ViewPhotoDialog from "@/components/own/viewPhotoDialog";
 
 interface MyPhotosPageProps {
   allowChanges: boolean;
@@ -9,6 +10,8 @@ interface MyPhotosPageProps {
 
 const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
   const [photos, setPhotos] = useState<PhotoModel[]>(originalPhotos);
+  const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel>();
+  const [viewPhotoDialogOpen, setViewPhotoDialogOpen] = useState(false);
 
   const cards = photos.map((photo) => { 
     return { 
@@ -18,14 +21,33 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
     }
   });
 
+  const handleViewItem = (id: number) => {
+    const photo = photos.find((photo) => photo.id === id);
+    setSelectedPhoto(photo);
+    setViewPhotoDialogOpen(true);
+  };
+
+  const handleDeleteItem = (id: number) => {
+    setPhotos(photos.filter((photo) => photo.id !== id))
+  };
+
   return (
-    <CardCollection
-      handleViewItem={() => console.log()}
-      handleEditItem={() => console.log()}
-      allowChanges={ allowChanges }
-      collectionType={ "photo" }
-      collection={ cards }
-    />
+    <>
+      <CardCollection
+        handleViewItem={handleViewItem}
+        handleEditItem={() => console.log()}
+        handleDeleteItem={handleDeleteItem}
+        allowChanges={ allowChanges }
+        collectionType={ "photo" }
+        collection={ cards }
+      />
+      <ViewPhotoDialog
+        title={selectedPhoto?.title || ''}
+        url={selectedPhoto?.url || ''}
+        open={viewPhotoDialogOpen}
+        onOpenChange={() => setViewPhotoDialogOpen(!viewPhotoDialogOpen)}
+      />
+    </>
   )
 }
 

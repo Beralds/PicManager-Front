@@ -26,7 +26,9 @@ const PhotoCard = ({
   return (
     <Card className={`w-[${width}] h-[${height}] m-2 flex flex-col justify-between items-center`} key={id}>
       <CardHeader>
-        <CardTitle>{`${title}`}</CardTitle>
+        <CardTitle className="inline-block whitespace-nowrap overflow-hidden text-ellipsis w-[190px]">
+          {`${title}`}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <figure>
