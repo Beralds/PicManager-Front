@@ -42,7 +42,7 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
         thumbnailUrl: thumbnailUrl,
       }
   
-      photos.push(newPhoto);
+      setPhotos([newPhoto, ...photos]);
       setNewPhotoDialogOpen(false);
     }
   };

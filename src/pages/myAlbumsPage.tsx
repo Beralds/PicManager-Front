@@ -1,7 +1,8 @@
-import AlbumModel from "@/@types/albumModel";
+import AlbumModel, { nextId } from "@/@types/albumModel";
 import userService from "@/services/userService";
 import { useEffect, useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
+import NewAlbumDialog from "@/components/own/newAlbumDialog";
 
 interface MyAlbumsPageProps {
   allowChanges: boolean;
@@ -11,6 +12,8 @@ interface MyAlbumsPageProps {
 
 const MyAlbumsPage = ({ allowChanges, handleSelectAlbum, selectedUserId }: MyAlbumsPageProps) => {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
+  const [newAlbumDialogOpen, setNewAlbumDialogOpen] = useState(false);
+
   const selectAlbum = (albumId: number) => {
     const selectedAlbum = 
       albums.find((album) => album.id === albumId) || { userId: 0, id: 0, title: '', photos: [] };
@@ -33,16 +36,37 @@ const MyAlbumsPage = ({ allowChanges, handleSelectAlbum, selectedUserId }: MyAlb
     setAlbums(albums.filter((album) => album.id !== id))
   };
 
+  const addAlbum = (title: string) => {
+    if (title) {
+      const newAlbum = {
+        id: nextId(albums),
+        userId: selectedUserId,
+        title: title,
+        photos: [],
+      };
+  
+      setAlbums([newAlbum, ...albums]);
+      setNewAlbumDialogOpen(false);
+    }
+  };
+
   return (
-    <CardCollection
-      handleViewItem={selectAlbum}
-      handleEditItem={selectAlbum}
-      handleDeleteItem={handleDeleteItem}
-      showNewItemDialog={() => console.log()}
-      allowChanges={ allowChanges }
-      collectionType={ "album" }
-      collection={ cards }
-    />
+    <>
+      <CardCollection
+        handleViewItem={selectAlbum}
+        handleEditItem={selectAlbum}
+        handleDeleteItem={handleDeleteItem}
+        showNewItemDialog={() => setNewAlbumDialogOpen(true)}
+        allowChanges={ allowChanges }
+        collectionType={ "album" }
+        collection={ cards }
+      />
+      <NewAlbumDialog
+        open={newAlbumDialogOpen}
+        onOpenChange={() => setNewAlbumDialogOpen(false)}
+        onSave={(title) => addAlbum(title)}
+      />
+    </>
   )
 }
 
