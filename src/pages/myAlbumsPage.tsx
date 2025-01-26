@@ -38,6 +38,7 @@ const MyAlbumsPage = ({ allowChanges, handleSelectAlbum, selectedUserId }: MyAlb
       handleViewItem={selectAlbum}
       handleEditItem={selectAlbum}
       handleDeleteItem={handleDeleteItem}
+      showNewItemDialog={() => console.log()}
       allowChanges={ allowChanges }
       collectionType={ "album" }
       collection={ cards }

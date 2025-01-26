@@ -7,6 +7,7 @@ interface CardCollectionProps {
   handleViewItem: (itemId: number) => void;
   handleEditItem: (itemId: number) => void;
   handleDeleteItem: (itemId: number) => void;
+  showNewItemDialog: () => void;
   allowChanges: boolean;
   collectionType: "photo" | "album";
   collection: CardModel[];
@@ -16,6 +17,7 @@ const CardCollection = ({
   handleViewItem, 
   handleEditItem, 
   handleDeleteItem, 
+  showNewItemDialog,
   allowChanges, 
   collectionType, 
   collection }: CardCollectionProps) => {
@@ -26,7 +28,8 @@ const CardCollection = ({
       <div className="border rounded grid grid-cols-3">
         { allowChanges ? 
           <NewItemCard 
-            title={collectionType} 
+            title={ collectionType }
+            showNewItemDialog={ showNewItemDialog }
             width="280px"
             height={ isItPhotoCollection ? "300px" : "200px" } /> : null 
         }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
-import PhotoModel from "@/@types/photoModel";
+import PhotoModel, { nextId } from "@/@types/photoModel";
 import ViewPhotoDialog from "@/components/own/viewPhotoDialog";
 import NewPhotoDialog from "@/components/own/newPhotoDialog";
 
@@ -13,6 +13,7 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
   const [photos, setPhotos] = useState<PhotoModel[]>(originalPhotos);
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel>();
   const [viewPhotoDialogOpen, setViewPhotoDialogOpen] = useState(false);
+  const [newPhotoDialogOpen, setNewPhotoDialogOpen] = useState(false);
 
   const cards = photos.map((photo) => { 
     return { 
@@ -32,12 +33,27 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
     setPhotos(photos.filter((photo) => photo.id !== id))
   };
 
+  const addPhoto = (title: string, url: string, thumbnailUrl: string) => {
+    if (!!title && !!url && !!thumbnailUrl) {
+      const newPhoto = {
+        id: nextId(photos),
+        title: title,
+        url: url,
+        thumbnailUrl: thumbnailUrl,
+      }
+  
+      photos.push(newPhoto);
+      setNewPhotoDialogOpen(false);
+    }
+  };
+
   return (
     <>
       <CardCollection
         handleViewItem={handleViewItem}
         handleEditItem={() => console.log()}
         handleDeleteItem={handleDeleteItem}
+        showNewItemDialog={() => setNewPhotoDialogOpen(true)}
         allowChanges={ allowChanges }
         collectionType={ "photo" }
         collection={ cards }
@@ -46,11 +62,12 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
         title={selectedPhoto?.title || ''}
         url={selectedPhoto?.url || ''}
         open={viewPhotoDialogOpen}
-        onOpenChange={() => setViewPhotoDialogOpen(!viewPhotoDialogOpen)}
+        onOpenChange={() => setViewPhotoDialogOpen(false)}
       />
       <NewPhotoDialog
-        open={true}
-        onOpenChange={() => console.log()}
+        open={newPhotoDialogOpen}
+        onOpenChange={() => setNewPhotoDialogOpen(false)}
+        onSave={(title, url, thumbnailUrl) => addPhoto(title, url, thumbnailUrl)}
       />
     </>
   )

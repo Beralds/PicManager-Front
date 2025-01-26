@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,13 +14,17 @@ import { Button } from "../ui/button";
 interface INewPhotoDialogProps {
   open: boolean;
   onOpenChange: () => void;
+  onSave: (title: string, url: string, thumbnailUrl: string) => void;
 }
 
-const NewPhotoDialog = ({ open, onOpenChange }: INewPhotoDialogProps) => {
+const NewPhotoDialog = ({ open, onOpenChange, onSave }: INewPhotoDialogProps) => {
+  const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} >
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[450px]">
         <DialogHeader>
           <DialogTitle>New Photo</DialogTitle>
           <DialogDescription>
@@ -31,23 +36,48 @@ const NewPhotoDialog = ({ open, onOpenChange }: INewPhotoDialogProps) => {
             <Label htmlFor="title" className="text-right">
               Title
             </Label>
-            <Input id="name" className="col-span-3" />
+            <Input 
+              id="title" 
+              className="col-span-3" 
+              value={title} 
+              onChange={(e) => setTitle(e.target.value)} 
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="url" className="text-right">
               Url
             </Label>
-            <Input id="url" className="col-span-3" />
+            <Input 
+              id="url" 
+              className="col-span-3" 
+              value={url} 
+              onChange={(e) => setUrl(e.target.value)} 
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="thumbailUrl" className="text-right">
               Thumbnail Url
             </Label>
-            <Input id="thumbailUrl" className="col-span-3" />
+            <Input 
+              id="thumbnailUrl" 
+              className="col-span-3" 
+              value={thumbnailUrl} 
+              onChange={(e) => setThumbnailUrl(e.target.value)} 
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save</Button>
+          <Button 
+            type="submit" 
+            onClick={() => {
+              onSave(title, url, thumbnailUrl);
+              setTitle('');
+              setUrl('');
+              setThumbnailUrl('');
+            }}
+          >
+            Save
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
