@@ -1,6 +1,5 @@
 import AlbumModel, { nextId } from "@/@types/albumModel";
-import userService from "@/services/userService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
 import NewAlbumDialog from "@/components/own/newAlbumDialog";
 
@@ -8,10 +7,17 @@ interface MyAlbumsPageProps {
   allowChanges: boolean;
   handleSelectAlbum: (album: AlbumModel) => void;
   selectedUserId: number;
+  albums: AlbumModel[];
+  setAlbums: (albums: AlbumModel[]) => void;
 }
 
-const MyAlbumsPage = ({ allowChanges, handleSelectAlbum, selectedUserId }: MyAlbumsPageProps) => {
-  const [albums, setAlbums] = useState<AlbumModel[]>([]);
+const MyAlbumsPage = ({ 
+    allowChanges, 
+    handleSelectAlbum, 
+    selectedUserId, 
+    albums, 
+    setAlbums 
+  }: MyAlbumsPageProps) => {
   const [newAlbumDialogOpen, setNewAlbumDialogOpen] = useState(false);
 
   const selectAlbum = (albumId: number) => {
@@ -20,15 +26,6 @@ const MyAlbumsPage = ({ allowChanges, handleSelectAlbum, selectedUserId }: MyAlb
 
     handleSelectAlbum(selectedAlbum);
   };
-
-  useEffect(() => {
-    const getAlbums = async () => {
-      const albums = await userService.getUserAlbums(selectedUserId);
-      setAlbums(albums);
-    }
-    
-    getAlbums();
-  }, [])
 
   const cards = albums.map((album) => { return { itemId: album.id, title: album.title}});
 

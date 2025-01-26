@@ -6,11 +6,11 @@ import NewPhotoDialog from "@/components/own/newPhotoDialog";
 
 interface MyPhotosPageProps {
   allowChanges: boolean;
-  originalPhotos: PhotoModel[];
+  photos: PhotoModel[];
+  setPhotos: (photos: PhotoModel[]) => void;
 }
 
-const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
-  const [photos, setPhotos] = useState<PhotoModel[]>(originalPhotos);
+const MyPhotosPage = ({ allowChanges, photos, setPhotos }: MyPhotosPageProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel>();
   const [viewPhotoDialogOpen, setViewPhotoDialogOpen] = useState(false);
   const [newPhotoDialogOpen, setNewPhotoDialogOpen] = useState(false);

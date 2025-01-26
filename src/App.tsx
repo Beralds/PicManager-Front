@@ -7,7 +7,8 @@ import { Page } from "./enums/pages";
 import MyPhotosPage from "./pages/myPhotosPage";
 import Header from "./components/own/header";
 import AlbumModel from "./@types/albumModel";
-// import MyPhotosPage from "./pages/myPhotosPage";
+import PhotoModel from "./@types/photoModel";
+import userService from "./services/userService";
 
 export function App() {
   const [currentPage, setCurrentPage] = useState(Page.Landing);
@@ -15,6 +16,8 @@ export function App() {
   const [selectedUser, setSelectedUser] = useState<UserModel>();
   const [selectedAlbum, setSelectedAlbum] = useState<AlbumModel>();
   const allowChanges = currentUserEmail === selectedUser?.email;
+
+  const [albums, setAlbums] = useState<AlbumModel[]>([]);
 
   const handleSignIn = (userEmail: string) => {
     setCurrentUserEmail(userEmail);
@@ -27,13 +30,23 @@ export function App() {
   const handlePreviousPage = () => {
     setCurrentPage(currentPage - 1);
   }
-  const handleSelectUser = (user: UserModel) => {
+  const handleSelectUser = async (user: UserModel) => {
+    const albums = await userService.getUserAlbums(user.id);
+    setAlbums(albums);
+  
     setSelectedUser(user);
     setCurrentPage(Page.Albums);
   }
   const handleSelectAlbum = (album: AlbumModel) => {
     setSelectedAlbum(album);
     setCurrentPage(Page.Photos);
+  }
+  const updateSelectedAlbumPhotos = (photos: PhotoModel[]) => {
+    if(selectedAlbum) {
+      const updatedAlbum = { ...selectedAlbum, photos: photos };
+      setSelectedAlbum(updatedAlbum);
+      setAlbums(albums.map((album) => album.id === selectedAlbum.id ? updatedAlbum : album));
+    }
   }
 
   return (
@@ -58,11 +71,14 @@ export function App() {
           allowChanges={allowChanges}
           handleSelectAlbum={handleSelectAlbum}
           selectedUserId={selectedUser?.id || 0}
+          albums={albums}
+          setAlbums={setAlbums}
         /> :  null }
       { currentPage === Page.Photos ? 
         <MyPhotosPage 
           allowChanges={allowChanges}
-          originalPhotos={selectedAlbum?.photos || []}
+          photos={selectedAlbum?.photos || []}
+          setPhotos={updateSelectedAlbumPhotos}
         /> :  null }
     </div>
   )
