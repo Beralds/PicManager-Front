@@ -69,8 +69,10 @@ export function App() {
       { currentPage === Page.Albums ? 
         <MyAlbumsPage 
           allowChanges={allowChanges}
-          handleSelectAlbum={handleSelectAlbum}
+          handleViewAlbum={handleSelectAlbum}
+          handleSelectAlbum={setSelectedAlbum}
           selectedUserId={selectedUser?.id || 0}
+          selectedAlbum={selectedAlbum}
           albums={albums}
           setAlbums={setAlbums}
         /> :  null }

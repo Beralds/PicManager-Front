@@ -1,14 +1,16 @@
 import AlbumDialog from "./albumDialog";
  
-interface INewAlbumDialogProps {
+interface IEditAlbumDialogProps {
+  currentTitle: string;
   open: boolean;
   onOpenChange: () => void;
   onSave: (title: string) => void;
 }
 
-const NewAlbumDialog = ({ open, onOpenChange, onSave }: INewAlbumDialogProps) => {
+const EditAlbumDialog = ({ currentTitle, open, onOpenChange, onSave }: IEditAlbumDialogProps) => {
   return (
     <AlbumDialog 
+      currentTitle={currentTitle}
       open={open}
       onOpenChange={onOpenChange}
       onSave={onSave}
@@ -16,4 +18,4 @@ const NewAlbumDialog = ({ open, onOpenChange, onSave }: INewAlbumDialogProps) =>
   )
 }
 
-export default NewAlbumDialog;
+export default EditAlbumDialog;
