@@ -2,6 +2,7 @@ import { useState } from "react";
 import CardCollection from "@/components/own/cardCollection";
 import PhotoModel from "@/@types/photoModel";
 import ViewPhotoDialog from "@/components/own/viewPhotoDialog";
+import NewPhotoDialog from "@/components/own/newPhotoDialog";
 
 interface MyPhotosPageProps {
   allowChanges: boolean;
@@ -46,6 +47,10 @@ const MyPhotosPage = ({ allowChanges, originalPhotos }: MyPhotosPageProps) => {
         url={selectedPhoto?.url || ''}
         open={viewPhotoDialogOpen}
         onOpenChange={() => setViewPhotoDialogOpen(!viewPhotoDialogOpen)}
+      />
+      <NewPhotoDialog
+        open={true}
+        onOpenChange={() => console.log()}
       />
     </>
   )
