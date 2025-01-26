@@ -57,6 +57,7 @@ export function App() {
         <MyAlbumsPage 
           allowChanges={allowChanges}
           handleSelectAlbum={handleSelectAlbum}
+          selectedUserId={selectedUser?.id || 0}
         /> :  null }
       { currentPage === Page.Photos ? 
         <MyPhotosPage 
