@@ -1,6 +1,6 @@
-# My Awesome React Frontend Project
+# Pic Manager - Front
 
-This project is a [brief description of your project, e.g., an e-commerce storefront, a dashboard, a blog, etc.] built with React, TypeScript, Vite, Shadcn/UI, and Tailwind CSS.
+This project is a Photo Manager application built with React, TypeScript, Vite, Shadcn/UI, and Tailwind CSS.
 
 ## Open features
 * View user's list
