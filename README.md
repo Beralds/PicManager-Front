@@ -1,50 +1,98 @@
-# React + TypeScript + Vite
+# My Awesome React Frontend Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a [brief description of your project, e.g., an e-commerce storefront, a dashboard, a blog, etc.] built with React, TypeScript, Vite, Shadcn/UI, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Open features
+* View user's list
+* View user albums
+* View album photos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Additional features for signed user while managing its own albums
+* Edit album information
+* Delete album
+* Edit photo information
+* Delete photo
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+* [Node.js](https://nodejs.org/) (v20 or higher recommended)
+* [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. Clone the repo:
+```bash
+git clone https://github.com/Beralds/PicManager-Front.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Navigate to the project directory:
+```bash
+cd PicManager-Front
 ```
+
+3. Install dependencies:
+```bash
+npm install
+```
+or
+```bash
+yarn install
+```
+
+## Running the app
+```bash
+npm run dev
+```
+or
+```bash
+yarn dev
+```
+
+This will start the development server on http://localhost:5173 (or the port specified in your vite.config.ts file).
+
+## Running tests
+```bash
+npm run test
+```
+or
+```bash
+yarn test
+```
+
+## Tech Stack
+* React: JavaScript library for building user interfaces.
+* TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
+* Vite: Next generation frontend tooling.
+* Shadcn/UI: A collection of accessible and beautiful UI components.
+* Tailwind CSS: Utility-first CSS framework.
+  
+## Project Structure
+```bash
+PicManager-Front/
+├── src/             # Source code
+│   ├── components/   # Reusable components
+│   ├── pages/        # Page components
+│   ├── App.tsx       # Main application component
+│   ├── main.tsx      # Entry point
+│   └── ...          # Other source files
+├── public/          # Static assets
+│   ├── index.html   # Main HTML file
+│   └── ...          # Other assets
+├── vite.config.ts   # Vite configuration
+├── package.json     # Project dependencies and scripts
+├── README.md        # This file
+└── ...              # Other configuration files
+```
+
+## Authors
+Wender Lemes
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Contact
+Wender Lemes - wender.lemes@dtidigital.com.br
