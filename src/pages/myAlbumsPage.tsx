@@ -1,8 +1,8 @@
 import AlbumModel, { nextId } from "@/@types/albumModel";
 import { useState } from "react";
-import CardCollection from "@/components/own/cardCollection";
-import NewAlbumDialog from "@/components/own/newAlbumDialog";
-import EditAlbumDialog from "@/components/own/editAlbumDialog";
+import CardCollection from "@/components/own/cards/cardCollection";
+import NewAlbumDialog from "@/components/own/dialogs/newAlbumDialog";
+import EditAlbumDialog from "@/components/own/dialogs/editAlbumDialog";
 
 interface MyAlbumsPageProps {
   allowChanges: boolean;

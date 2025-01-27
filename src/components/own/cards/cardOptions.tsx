@@ -1,6 +1,6 @@
 import { CircleX, FilePenLine, FolderSearch } from "lucide-react";
-import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import { Button } from "../../ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../ui/tooltip";
 
 
 interface CardOptionsProps {

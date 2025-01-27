@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CardCollection from "@/components/own/cardCollection";
+import CardCollection from "@/components/own/cards/cardCollection";
 import PhotoModel, { nextId } from "@/@types/photoModel";
-import ViewPhotoDialog from "@/components/own/viewPhotoDialog";
-import NewPhotoDialog from "@/components/own/newPhotoDialog";
-import EditPhotoDialog from "@/components/own/editPhotoDialog";
+import ViewPhotoDialog from "@/components/own/dialogs/viewPhotoDialog";
+import NewPhotoDialog from "@/components/own/dialogs/newPhotoDialog";
+import EditPhotoDialog from "@/components/own/dialogs/editPhotoDialog";
 
 interface MyPhotosPageProps {
   allowChanges: boolean;

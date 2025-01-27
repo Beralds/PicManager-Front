@@ -1,10 +1,9 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "../../ui/card";
 import CardOptions from "./cardOptions";
 
-interface PhotoCardProps {
+interface AlbumCardProps {
   id: number;
   title: string;
-  thumbnailUrl: string;
   allowChanges: boolean;
   handleViewItem: (itemId: number) => void;
   handleEditItem: (itemId: number) => void;
@@ -13,32 +12,24 @@ interface PhotoCardProps {
   height: string;
 }
 
-const PhotoCard = ({ 
+const AlbumCard = ({ 
   id, 
-  title, 
-  thumbnailUrl, 
+  title,
   allowChanges,
   handleViewItem, 
   handleEditItem, 
   handleDeleteItem,
   width, 
-  height }: PhotoCardProps) => {
+  height }: AlbumCardProps) => {
   return (
     <Card className={`w-[${width}] h-[${height}] m-2 flex flex-col justify-between items-center`} key={id}>
       <CardHeader>
-        <CardTitle className="inline-block whitespace-nowrap overflow-hidden text-ellipsis w-[190px]">
-          {`${title}`}
-        </CardTitle>
+        <CardTitle>{`${title}`}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <figure>
-          <img src={thumbnailUrl} alt={title} />
-        </figure>
-      </CardContent>
       <CardFooter className="flex justify-end">
         <CardOptions
           itemId={id} 
-          cardType={"photo"} 
+          cardType={"album"} 
           handleViewItem={handleViewItem} 
           handleEditItem={handleEditItem} 
           handleDeleteItem={handleDeleteItem} 
@@ -49,4 +40,4 @@ const PhotoCard = ({
   )
 }
 
-export default PhotoCard;
+export default AlbumCard;
