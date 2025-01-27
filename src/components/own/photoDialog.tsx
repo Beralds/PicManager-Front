@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,11 @@ const PhotoDialog = ({
   const [title, setTitle] = useState(currentTitle || '');
   const [url, setUrl] = useState(currentUrl || '');
   const [thumbnailUrl, setThumbnailUrl] = useState(currentThumbnailUrl || '');
+  useEffect(() => {
+    setTitle(currentTitle || '');
+    setUrl(currentUrl || '');
+    setThumbnailUrl(currentThumbnailUrl || '');
+  }, [currentTitle, currentUrl, currentThumbnailUrl]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} >

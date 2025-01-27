@@ -65,7 +65,7 @@ const MyPhotosPage = ({ allowChanges, photos, setPhotos }: MyPhotosPageProps) =>
       }
   
       setPhotos(photos.map((photo) => photo.id === selectedPhoto?.id ? updatedPhoto : photo));
-      setNewPhotoDialogOpen(false);
+      setEditPhotoDialogOpen(false);
     }
   }
 

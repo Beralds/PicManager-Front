@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +20,9 @@ interface IAlbumDialogProps {
 
 const AlbumDialog = ({ currentTitle, open, onOpenChange, onSave }: IAlbumDialogProps) => {
   const [title, setTitle] = useState(currentTitle || '');
+  useEffect(() => {
+    setTitle(currentTitle || '');
+  }, [currentTitle]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} >
